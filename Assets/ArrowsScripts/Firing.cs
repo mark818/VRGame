@@ -8,6 +8,7 @@ public class Firing : MonoBehaviour {
     public OVRInput.Controller controllerLeft;
     public OVRInput.Controller controllerRight;
 
+    public Rigidbody bulletrb;
     public float firingSpeed;
     public GameObject bulletType;
 
@@ -28,6 +29,14 @@ public class Firing : MonoBehaviour {
             Vector3 LeftLocation = OVRInput.GetLocalControllerPosition(controllerLeft);
             Quaternion LeftRotation = OVRInput.GetLocalControllerRotation(controllerRight);
 
+            GameObject bullet = Instantiate(bulletType) as GameObject;
+            bullet.transform.position = LeftLocation;
+            bullet.transform.rotation = LeftRotation;
+            bullet.AddComponent<Rigidbody>();
+            bulletrb = bullet.GetComponent<Rigidbody>();
+            bulletrb.AddForce(transform.forward * firingSpeed);
+
+        
 
         }
 
@@ -35,6 +44,13 @@ public class Firing : MonoBehaviour {
         {
             Vector3 RightLocation = OVRInput.GetLocalControllerPosition(controllerRight);
             Quaternion RightRotation = OVRInput.GetLocalControllerRotation(controllerRight);
+
+            GameObject bullet = Instantiate(bulletType) as GameObject;
+            bullet.transform.position = RightLocation;
+            bullet.transform.rotation = RightRotation;
+            bullet.AddComponent<Rigidbody>();
+            bulletrb = bullet.GetComponent<Rigidbody>();
+            bulletrb.AddForce(transform.forward * firingSpeed);
 
         }
     }
