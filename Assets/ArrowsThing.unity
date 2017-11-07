@@ -108,6 +108,12 @@ NavMeshSettings:
     tileSize: 256
     accuratePlacement: 0
   m_NavMeshData: {fileID: 0}
+--- !u!114 &82429927 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 11437430, guid: 84c8b8609f9bb434eaf5248f17ff1293,
+    type: 2}
+  m_PrefabInternal: {fileID: 1594245882}
+  m_Script: {fileID: 11500000, guid: 00f3402a2ea5bff4880c0313515240cd, type: 3}
 --- !u!1 &163666527
 GameObject:
   m_ObjectHideFlags: 0
@@ -258,8 +264,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af8d7236cfb429d44968bbd1eb0a2ba6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LocalAvatar: {fileID: 0}
-  LoopbackAvatar: {fileID: 0}
+  LocalAvatar: {fileID: 82429927}
+  LoopbackAvatar: {fileID: 1036864570}
   LatencySettings:
     FakeLatencyMax: 0.25
     FakeLatencyMin: 0.002
@@ -429,6 +435,12 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1036864570 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 11464902, guid: 90bf33f968e6bb44ea0208fc82c90a44,
+    type: 2}
+  m_PrefabInternal: {fileID: 1150659299}
+  m_Script: {fileID: 11500000, guid: 00f3402a2ea5bff4880c0313515240cd, type: 3}
 --- !u!1001 &1150659299
 Prefab:
   m_ObjectHideFlags: 0
