@@ -24,34 +24,24 @@ public class Firing : MonoBehaviour {
 
     void Fire(hands leftOrRight)
     {
+        Vector3 location;
+        Quaternion rotation;
+
         if (leftOrRight == hands.Left)
         {
-            Vector3 LeftLocation = OVRInput.GetLocalControllerPosition(controllerLeft);
-            Quaternion LeftRotation = OVRInput.GetLocalControllerRotation(controllerRight);
-
-            GameObject bullet = Instantiate(bulletType) as GameObject;
-            bullet.transform.position = LeftLocation;
-            bullet.transform.rotation = LeftRotation;
-            bullet.AddComponent<Rigidbody>();
-            bulletrb = bullet.GetComponent<Rigidbody>();
-            bulletrb.AddForce(transform.forward * firingSpeed);
-
-        
-
+            location = OVRInput.GetLocalControllerPosition(controllerLeft);
+            rotation = OVRInput.GetLocalControllerRotation(controllerRight);
         }
-
-        if (leftOrRight == hands.Right)
+        else
         {
-            Vector3 RightLocation = OVRInput.GetLocalControllerPosition(controllerRight);
-            Quaternion RightRotation = OVRInput.GetLocalControllerRotation(controllerRight);
-
-            GameObject bullet = Instantiate(bulletType) as GameObject;
-            bullet.transform.position = RightLocation;
-            bullet.transform.rotation = RightRotation;
-            bullet.AddComponent<Rigidbody>();
-            bulletrb = bullet.GetComponent<Rigidbody>();
-            bulletrb.AddForce(transform.forward * firingSpeed);
-
+            location = OVRInput.GetLocalControllerPosition(controllerRight);
+            rotation = OVRInput.GetLocalControllerRotation(controllerRight);
         }
+
+        GameObject bullet = Instantiate(bulletType) as GameObject;
+        bullet.transform.position = location;
+        bullet.transform.rotation = rotation;
+        bulletrb = bullet.GetComponent<Rigidbody>();
+        bulletrb.AddForce(transform.forward * firingSpeed);
     }
 }
