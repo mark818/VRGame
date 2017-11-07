@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 23406394716683236}
   m_Layer: 0
   m_Name: Square
-  m_TagString: Untagged
+  m_TagString: a
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
