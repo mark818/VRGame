@@ -36,11 +36,18 @@ public class SpawnBlock : MonoBehaviour {
             int block_num = Random.Range(0, 8);
             float x_num = Random.Range(0.0f, 1.0f);
             float z_num = Random.Range(0.0f, 1.0f);
-            GameObject clone = GameObject.Instantiate(blocks[block_num], new Vector3(x_num, 10, z_num + 5), Quaternion.identity);
+            GameObject clone = GameObject.Instantiate(blocks[block_num], new Vector3(x_num, 5, z_num + 5), Quaternion.identity);
             clone.AddComponent<Rigidbody>();
             clone.AddComponent<BoxCollider>();
+
+
+           // clone.GetComponent<Rigidbody>().useGravity = false;
+            //clone.GetComponent<Rigidbody>().velocity = new Vector3(0, -1.0f, 0);
             //clone.GetComponent<Rigidbody>().AddForce(new Vector3(0, 5f, 0));
             next_spawn_time += 5.0f;
+            Physics.gravity = new Vector3(0, -0.5f, 0);
+
+            
         }
 
     }
