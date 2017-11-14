@@ -479,13 +479,13 @@ public class PhotonEditor : EditorWindow
             GUILayout.Label(CurrentLang.MobilePunPlusExportNoteLabel);
             GUILayout.Space(15);
         }
-#if !(UNITY_5_0 || UNITY_5 || UNITY_5_3_AND_NEWER)
-        else if (!InternalEditorUtility.HasAdvancedLicenseOnBuildTarget(BuildTarget.Android) || !InternalEditorUtility.HasAdvancedLicenseOnBuildTarget(BuildTarget.iPhone))
-        {
-            GUILayout.Label(CurrentLang.MobileExportNoteLabel);
-            GUILayout.Space(15);
-        }
-#endif
+//#if !(UNITY_5_0 || UNITY_5 || UNITY_5_3_AND_NEWER)
+//        else if (!InternalEditorUtility.HasAdvancedLicenseOnBuildTarget(BuildTarget.Android) || !InternalEditorUtility.HasAdvancedLicenseOnBuildTarget(BuildTarget.iPhone))
+//        {
+//            GUILayout.Label(CurrentLang.MobileExportNoteLabel);
+//            GUILayout.Space(15);
+//        }
+//#endif
 
         // settings button
         GUILayout.BeginHorizontal();

@@ -271,6 +271,7 @@ MonoBehaviour:
     FakeLatencyMin: 0.002
     LatencyWeight: 0.25
     MaxSamples: 4
+  MaxPlayersPerRoom: 2
 --- !u!1 &336220977
 GameObject:
   m_ObjectHideFlags: 0
@@ -500,11 +501,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 496618, guid: 90bf33f968e6bb44ea0208fc82c90a44, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 9.2
       objectReference: {fileID: 0}
     - target: {fileID: 496618, guid: 90bf33f968e6bb44ea0208fc82c90a44, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.42
       objectReference: {fileID: 0}
     - target: {fileID: 496618, guid: 90bf33f968e6bb44ea0208fc82c90a44, type: 2}
       propertyPath: m_LocalPosition.z
