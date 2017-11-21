@@ -66,21 +66,43 @@ public class AvatarPlayback : Photon.PunBehaviour
 
     void Start()
     {
+
+        Debug.Log(PhotonNetwork.ConnectUsingSettings("1.0"));
+        
+    }
+
+    //public override void OnConnectedToMaster()
+    //{
+    //    Debug.Log("DemoAnimator/Launcher: OnConnectedToMaster() was called by PUN");
+    //}
+
+    public override void OnConnectedToMaster()
+    {
+        Debug.Log("OnJoinedLobby called by PUN");
+        Debug.Log(PhotonNetwork.CreateRoom("Test Room", new RoomOptions() { MaxPlayers = MaxPlayersPerRoom }, null));
+        RoomInfo[] info = PhotonNetwork.GetRoomList();
+        Debug.Log("printing rooms");
+        foreach (var i in info)
+        {
+            Debug.Log(i.ToString());
+        }
+
+        if (!PhotonNetwork.JoinRandomRoom())
+        {
+            PhotonNetwork.CreateRoom(null, new RoomOptions() { MaxPlayers = MaxPlayersPerRoom }, null);
+            
+            Debug.Log("Join random room " + PhotonNetwork.JoinRandomRoom());
+        }
+        Debug.Log("Rooms " + PhotonNetwork.countOfRooms);
+        Debug.Log("Player " + PhotonNetwork.countOfPlayersInRooms);
+        System.Random rnd = new System.Random();
+        PhotonNetwork.playerName = "Fool #" + rnd.Next();
+
         LocalAvatar.RecordPackets = true;
         LocalAvatar.PacketRecorded += OnLocalAvatarPacketRecorded;
         float FirstValue = UnityEngine.Random.Range(LatencySettings.FakeLatencyMin, LatencySettings.FakeLatencyMax);
         LatencySettings.LatencyValues.AddFirst(FirstValue);
         LatencySettings.LatencySum += FirstValue;
-
-        if (!PhotonNetwork.JoinRandomRoom())
-            PhotonNetwork.CreateRoom(null, new RoomOptions() { MaxPlayers = MaxPlayersPerRoom }, null);
-        System.Random rnd = new System.Random();
-        PhotonNetwork.playerName = "Fool #" + rnd.Next();
-    }
-
-    public override void OnConnectedToMaster()
-    {
-        Debug.Log("DemoAnimator/Launcher: OnConnectedToMaster() was called by PUN");
     }
 
     void OnLocalAvatarPacketRecorded(object sender, OvrAvatar.PacketEventArgs args)
@@ -99,8 +121,9 @@ public class AvatarPlayback : Photon.PunBehaviour
 
             SendPacketData(outputStream.ToArray());
         }
-
-        this.photonView.RPC("PhotonOnReceive", PhotonTargets.All, PacketSequence, args.Packet.ovrNativePacket);
+        PhotonView photonView = PhotonView.Get(this);
+        Debug.Log(photonView);
+        photonView.RPC("PhotonOnReceive", PhotonTargets.All, PacketSequence, args.Packet.ovrNativePacket);
     }
 
     [PunRPC]
