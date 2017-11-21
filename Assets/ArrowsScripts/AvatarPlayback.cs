@@ -6,7 +6,7 @@ using Oculus.Avatar;
 using System.Runtime.InteropServices;
 using System.Collections.Generic;
 
-public class AvatarPlayback : MonoBehaviour
+public class AvatarPlayback : Photon.PunBehaviour
 {
     class PacketLatencyPair
     {
@@ -61,6 +61,9 @@ public class AvatarPlayback : MonoBehaviour
 
     LinkedList<PacketLatencyPair> packetQueue = new LinkedList<PacketLatencyPair>();
 
+    public byte MaxPlayersPerRoom = 2;
+
+
     void Start()
     {
         LocalAvatar.RecordPackets = true;
@@ -68,6 +71,16 @@ public class AvatarPlayback : MonoBehaviour
         float FirstValue = UnityEngine.Random.Range(LatencySettings.FakeLatencyMin, LatencySettings.FakeLatencyMax);
         LatencySettings.LatencyValues.AddFirst(FirstValue);
         LatencySettings.LatencySum += FirstValue;
+
+        if (!PhotonNetwork.JoinRandomRoom())
+            PhotonNetwork.CreateRoom(null, new RoomOptions() { MaxPlayers = MaxPlayersPerRoom }, null);
+        System.Random rnd = new System.Random();
+        PhotonNetwork.playerName = "Fool #" + rnd.Next();
+    }
+
+    public override void OnConnectedToMaster()
+    {
+        Debug.Log("DemoAnimator/Launcher: OnConnectedToMaster() was called by PUN");
     }
 
     void OnLocalAvatarPacketRecorded(object sender, OvrAvatar.PacketEventArgs args)
@@ -86,6 +99,14 @@ public class AvatarPlayback : MonoBehaviour
 
             SendPacketData(outputStream.ToArray());
         }
+
+        this.photonView.RPC("PhotonOnReceive", PhotonTargets.All, PacketSequence, args.Packet.ovrNativePacket);
+    }
+
+    [PunRPC]
+    void PhotonOnReceive(int sequence, IntPtr packet)
+    {
+        LoopbackAvatar.GetComponent<OvrAvatarRemoteDriver>().QueuePacket(sequence, new OvrAvatarPacket { ovrNativePacket = packet });
     }
 
     void Update()

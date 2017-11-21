@@ -22,15 +22,16 @@ public class Firing : MonoBehaviour {
 		
 	}
 
-    void Fire(hands leftOrRight)
+    public void Fire(OVRInput.Controller hand)
     {
         Vector3 location;
         Quaternion rotation;
 
-        if (leftOrRight == hands.Left)
+        if (hand == controllerLeft)
         {
+            print("I made it here!");
             location = OVRInput.GetLocalControllerPosition(controllerLeft);
-            rotation = OVRInput.GetLocalControllerRotation(controllerRight);
+            rotation = OVRInput.GetLocalControllerRotation(controllerLeft);
         }
         else
         {
@@ -42,6 +43,6 @@ public class Firing : MonoBehaviour {
         bullet.transform.position = location;
         bullet.transform.rotation = rotation;
         bulletrb = bullet.GetComponent<Rigidbody>();
-        bulletrb.AddForce(transform.forward * firingSpeed);
+        bulletrb.AddForce(bullet.transform.forward * firingSpeed);
     }
 }
