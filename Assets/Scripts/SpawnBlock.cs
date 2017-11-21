@@ -14,6 +14,7 @@ public class SpawnBlock : MonoBehaviour {
 	public GameObject h;
     GameObject[] blocks = new GameObject[8];
     float next_spawn_time = Time.time+5.0f;
+    //private Vector3 
     //Physics.gravity = new Vector3(0, -1.0F, 0);
 
 
@@ -34,19 +35,22 @@ public class SpawnBlock : MonoBehaviour {
     void Update () {
         if (Time.time > next_spawn_time) {
             int block_num = Random.Range(0, 8);
-            GameObject clone = GameObject.Instantiate(blocks[block_num], new Vector3(-0.3f, 5, 5.3f), Quaternion.identity);
+            GameObject clone = GameObject.Instantiate(blocks[block_num], new Vector3(.722f, 3.1f, 5.317f), Quaternion.identity);
             clone.AddComponent<Rigidbody>();
-           
+            clone.GetComponent<Rigidbody>().useGravity = false;
 
 
-           // clone.GetComponent<Rigidbody>().useGravity = false;
+            clone.AddComponent(MoveDown);
+
+
             //clone.GetComponent<Rigidbody>().velocity = new Vector3(0, -1.0f, 0);
             //clone.GetComponent<Rigidbody>().AddForce(new Vector3(0, 5f, 0));
-            next_spawn_time += 5.0f;
-            Physics.gravity = new Vector3(0, -0.5f, 0);
+            //next_spawn_time += 5.0f;
+            //Physics.gravity = new Vector3(0, -0.5f, 0);
 
             
         }
 
+        
     }
 }
