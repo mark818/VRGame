@@ -14,6 +14,9 @@ public class SpawnBlock : MonoBehaviour {
 	public GameObject h;
     GameObject[] blocks = new GameObject[8];
     float next_spawn_time = Time.time+5.0f;
+    public MoveDown previous;
+    //public MoveDown md; 
+    //private Vector3 
     //Physics.gravity = new Vector3(0, -1.0F, 0);
 
 
@@ -28,12 +31,14 @@ public class SpawnBlock : MonoBehaviour {
         blocks[5] = f;
         blocks[6] = g;
         blocks[7] = h;
+        previous = null;
     }
 
     // Update is called once per frame
     void Update () {
-        if (Time.time > next_spawn_time) {
+        if (Time.time > next_spawn_time && (previous == null || previous.isMoving == false )) {
             int block_num = Random.Range(0, 8);
+<<<<<<< HEAD
             float x_num = Random.Range(0.0f, 1.0f);
             float z_num = Random.Range(0.0f, 1.0f);
             GameObject clone = GameObject.Instantiate(blocks[block_num], new Vector3(x_num, 5, z_num + 5), Quaternion.identity);
@@ -46,9 +51,23 @@ public class SpawnBlock : MonoBehaviour {
             //clone.GetComponent<Rigidbody>().AddForce(new Vector3(0, 5f, 0));
             next_spawn_time += 5.0f;
             Physics.gravity = new Vector3(0, -0.5f, 0);
+=======
+            GameObject clone = GameObject.Instantiate(blocks[block_num], new Vector3(.722f, 3.1f, 5.317f), Quaternion.identity);
+            clone.AddComponent<Rigidbody>();
+            clone.GetComponent<Rigidbody>().useGravity = false;
+            clone.AddComponent<MoveDown>();
+            previous = clone.GetComponent<MoveDown>();
+
+
+            //clone.GetComponent<Rigidbody>().velocity = new Vector3(0, -1.0f, 0);
+            //clone.GetComponent<Rigidbody>().AddForce(new Vector3(0, 5f, 0));
+            next_spawn_time += 5.0f;
+            //Physics.gravity = new Vector3(0, -0.5f, 0);
+>>>>>>> d25440d0af47b3f3301c28c2298db5ab5d032bed
 
             
         }
 
+        
     }
 }
