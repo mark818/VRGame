@@ -13,6 +13,7 @@ public class SpawnBlock : MonoBehaviour {
 	public GameObject g;
 	public GameObject h;
     GameObject[] blocks = new GameObject[8];
+
     float next_spawn_time = Time.time+5.0f;
     public MoveDown previous;
     //public MoveDown md; 

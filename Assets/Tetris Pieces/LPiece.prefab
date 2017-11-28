@@ -20,9 +20,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4132739280936542}
   - component: {fileID: 33411363545680776}
-  - component: {fileID: 65570299028229506}
   - component: {fileID: 23350328125041592}
   - component: {fileID: 114112627690693950}
+  - component: {fileID: 65818498628945006}
   m_Layer: 0
   m_Name: Cube (6)
   m_TagString: Untagged
@@ -39,9 +39,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4635938017907570}
   - component: {fileID: 33765328247987268}
-  - component: {fileID: 65670685828690076}
   - component: {fileID: 23616084140768310}
   - component: {fileID: 114913912903779420}
+  - component: {fileID: 65495360400718402}
   m_Layer: 0
   m_Name: Cube (8)
   m_TagString: Untagged
@@ -58,9 +58,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4395583958423630}
   - component: {fileID: 33845744409227680}
-  - component: {fileID: 65740867960609880}
   - component: {fileID: 23171943544807208}
   - component: {fileID: 114507659491177304}
+  - component: {fileID: 65386440043046104}
   m_Layer: 0
   m_Name: Cube (7)
   m_TagString: Untagged
@@ -77,9 +77,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4173360964159372}
   - component: {fileID: 33241764516096066}
-  - component: {fileID: 65672095394443970}
   - component: {fileID: 23560273722269774}
   - component: {fileID: 114626710903125438}
+  - component: {fileID: 65473510648575268}
   m_Layer: 0
   m_Name: Cube (9)
   m_TagString: Untagged
@@ -343,43 +343,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!65 &65570299028229506
-BoxCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1059960456142712}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!65 &65670685828690076
-BoxCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1178264132619538}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!65 &65672095394443970
-BoxCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1651051565417294}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!65 &65740867960609880
+--- !u!65 &65386440043046104
 BoxCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -389,8 +353,44 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Size: {x: 0.5, y: 1, z: 0.5}
+  m_Center: {x: 0, y: -0.0000009536743, z: 0}
+--- !u!65 &65473510648575268
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1651051565417294}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.5, y: 1, z: 0.5}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!65 &65495360400718402
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1178264132619538}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.5, y: 1, z: 0.5}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!65 &65818498628945006
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1059960456142712}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.5, y: 1, z: 0.5}
+  m_Center: {x: 0, y: -0.0000009536743, z: 0}
 --- !u!114 &114112627690693950
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -403,6 +403,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controller: 3
+  handTriggerState: 0
 --- !u!114 &114507659491177304
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -415,6 +416,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controller: 3
+  handTriggerState: 0
 --- !u!114 &114626710903125438
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -427,6 +429,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controller: 3
+  handTriggerState: 0
 --- !u!114 &114913912903779420
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -439,3 +442,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controller: 3
+  handTriggerState: 0

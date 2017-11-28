@@ -20,9 +20,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4670167159628742}
   - component: {fileID: 33186320340319632}
-  - component: {fileID: 65561960369845658}
   - component: {fileID: 23091824814480800}
   - component: {fileID: 114296082004815300}
+  - component: {fileID: 65666618611741180}
   m_Layer: 0
   m_Name: Cube (4)
   m_TagString: Untagged
@@ -39,9 +39,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4725209075922062}
   - component: {fileID: 33931510302284992}
-  - component: {fileID: 65455773674497314}
   - component: {fileID: 23770383261325694}
   - component: {fileID: 114505761712651906}
+  - component: {fileID: 65205437974615116}
   m_Layer: 0
   m_Name: Cube (5)
   m_TagString: Untagged
@@ -74,9 +74,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4015218130994130}
   - component: {fileID: 33057722901573558}
-  - component: {fileID: 65695265155741894}
   - component: {fileID: 23794936029817194}
   - component: {fileID: 114617922940194902}
+  - component: {fileID: 65548626112297702}
   m_Layer: 0
   m_Name: Cube (3)
   m_TagString: Untagged
@@ -93,9 +93,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4260368505938478}
   - component: {fileID: 33737474438119184}
-  - component: {fileID: 65531005324367222}
   - component: {fileID: 23079430439665078}
   - component: {fileID: 114376188439064998}
+  - component: {fileID: 65460620330938256}
   m_Layer: 0
   m_Name: Cube (2)
   m_TagString: Untagged
@@ -343,7 +343,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!65 &65455773674497314
+--- !u!65 &65205437974615116
 BoxCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -353,9 +353,9 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Size: {x: 0.5, y: 1, z: 0.5}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!65 &65531005324367222
+--- !u!65 &65460620330938256
 BoxCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -365,21 +365,9 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Size: {x: 0.5, y: 1, z: 0.5}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!65 &65561960369845658
-BoxCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1061414435851546}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!65 &65695265155741894
+--- !u!65 &65548626112297702
 BoxCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -389,7 +377,19 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Size: {x: 0.5, y: 1, z: 0.5}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!65 &65666618611741180
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1061414435851546}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.5, y: 1, z: 0.5}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &114296082004815300
 MonoBehaviour:
@@ -403,6 +403,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controller: 3
+  handTriggerState: 0
 --- !u!114 &114376188439064998
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -415,6 +416,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controller: 3
+  handTriggerState: 0
 --- !u!114 &114505761712651906
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -427,6 +429,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controller: 3
+  handTriggerState: 0
 --- !u!114 &114617922940194902
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -439,3 +442,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controller: 3
+  handTriggerState: 0
