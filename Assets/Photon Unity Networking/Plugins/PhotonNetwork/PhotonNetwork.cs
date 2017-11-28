@@ -1950,6 +1950,8 @@ public static class PhotonNetwork
         }
         if (networkingPeer.Server != ServerConnection.MasterServer || !connectedAndReady)
         {
+            Debug.Log(networkingPeer.Server);
+            Debug.Log(connectedAndReady);
             Debug.LogError("JoinRandomRoom failed. Client is not on Master Server or not yet ready to call operations. Wait for callback: OnJoinedLobby or OnConnectedToMaster.");
             return false;
         }

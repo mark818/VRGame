@@ -230,7 +230,12 @@ namespace ExitGames.Demos.DemoAnimator
 			}
 		}
 
-		#endregion
-		
-	}
+
+        private void Update()
+        {
+            Debug.Log(PhotonNetwork.countOfRooms);
+        }
+        #endregion
+
+    }
 }

@@ -66,8 +66,8 @@ public class AvatarPlayback : Photon.PunBehaviour
 
     void Start()
     {
-
-        Debug.Log(PhotonNetwork.ConnectUsingSettings("1.0"));
+        Debug.Log("here");
+        PhotonNetwork.ConnectUsingSettings("1.1");
         
     }
 
@@ -76,18 +76,33 @@ public class AvatarPlayback : Photon.PunBehaviour
     //    Debug.Log("DemoAnimator/Launcher: OnConnectedToMaster() was called by PUN");
     //}
 
+    public override void OnConnectionFail(DisconnectCause cause)
+    {
+        Debug.Log("OnConnectionFail");
+    }
+
+    public override void OnFailedToConnectToPhoton(DisconnectCause cause)
+    {
+        Debug.Log("OnConnectionFail");
+    }
+
     public override void OnConnectedToMaster()
     {
-        Debug.Log("OnJoinedLobby called by PUN");
-        Debug.Log(PhotonNetwork.CreateRoom("Test Room", new RoomOptions() { MaxPlayers = MaxPlayersPerRoom }, null));
-        RoomInfo[] info = PhotonNetwork.GetRoomList();
-        Debug.Log("printing rooms");
-        foreach (var i in info)
-        {
-            Debug.Log(i.ToString());
-        }
+        // Debug.Log("OnJoinedLobby called by PUN");
+        // Debug.Log(PhotonNetwork.CreateRoom("Test Room", new RoomOptions() { MaxPlayers = MaxPlayersPerRoom }, null));
+        //RoomInfo[] info = PhotonNetwork.GetRoomList();
+        //Debug.Log("printing rooms");
+        // foreach (var i in info)
+        // {
+        //    Debug.Log(i.ToString());
+        // }
+        Debug.Log("OnConnectedtoMaster");
+        PhotonNetwork.JoinRandomRoom();
 
-        if (!PhotonNetwork.JoinRandomRoom())
+        return;
+        
+
+       /* if (!PhotonNetwork.JoinRandomRoom())
         {
             PhotonNetwork.CreateRoom(null, new RoomOptions() { MaxPlayers = MaxPlayersPerRoom }, null);
             
@@ -102,9 +117,43 @@ public class AvatarPlayback : Photon.PunBehaviour
         LocalAvatar.PacketRecorded += OnLocalAvatarPacketRecorded;
         float FirstValue = UnityEngine.Random.Range(LatencySettings.FakeLatencyMin, LatencySettings.FakeLatencyMax);
         LatencySettings.LatencyValues.AddFirst(FirstValue);
-        LatencySettings.LatencySum += FirstValue;
+        LatencySettings.LatencySum += FirstValue; */
+
     }
 
+
+    public override void OnCreatedRoom()
+    {
+        Debug.Log("oncreatedroom");
+        PhotonNetwork.JoinRandomRoom();
+    }
+
+    public override void OnPhotonRandomJoinFailed(object[] codeAndMsg)
+    
+    {
+        Debug.Log("onphotonjoinroomfailed");
+        PhotonNetwork.CreateRoom("Please Work", new RoomOptions() { MaxPlayers = MaxPlayersPerRoom }, null);
+
+    }
+
+
+
+    public override void OnJoinedRoom()
+
+    {
+        Debug.Log("success");
+        Debug.Log(PhotonNetwork.room.PlayerCount);
+      
+    }
+
+   /* public override void OnJoinedLobby()
+    {
+        Debug.Log("On joined lobby");
+        PhotonNetwork.CreateRoom("Test Room", new RoomOptions() { MaxPlayers = MaxPlayersPerRoom }, null);
+        Debug.Log(PhotonNetwork.countOfRooms);
+
+    }
+    */
     void OnLocalAvatarPacketRecorded(object sender, OvrAvatar.PacketEventArgs args)
     {
         using (MemoryStream outputStream = new MemoryStream())
@@ -153,6 +202,13 @@ public class AvatarPlayback : Photon.PunBehaviour
                 packetQueue.Remove(packet);
             }
         }
+
+       
+
+        // Debug.Log(PhotonNetwork.countOfRooms);
+        // int[] testerarray = new int[3] { 1, 3, 5 };
+        //Debug.Log(testerarray);
+
     }
 
     void SendPacketData(byte[] data)

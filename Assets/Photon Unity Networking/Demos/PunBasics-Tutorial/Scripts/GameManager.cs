@@ -90,6 +90,8 @@ namespace ExitGames.Demos.DemoAnimator
 			{
 				QuitApplication();
 			}
+
+            Debug.Log(PhotonNetwork.countOfRooms);
 		}
 
 		#endregion
