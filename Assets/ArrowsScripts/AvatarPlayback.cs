@@ -86,7 +86,7 @@ public class AvatarPlayback : Photon.PunBehaviour
         Debug.Log("OnConnectionFail");
     }
 
-    public override void OnConnectedToMaster()
+    public override void OnJoinedLobby()
     {
         // Debug.Log("OnJoinedLobby called by PUN");
         // Debug.Log(PhotonNetwork.CreateRoom("Test Room", new RoomOptions() { MaxPlayers = MaxPlayersPerRoom }, null));
@@ -122,11 +122,11 @@ public class AvatarPlayback : Photon.PunBehaviour
     }
 
 
-    public override void OnCreatedRoom()
-    {
-        Debug.Log("oncreatedroom");
-        PhotonNetwork.JoinRandomRoom();
-    }
+    //public override void OnCreatedRoom()
+    //{
+    //    Debug.Log("oncreatedroom");
+    //    PhotonNetwork.JoinRandomRoom();
+    //}
 
     public override void OnPhotonRandomJoinFailed(object[] codeAndMsg)
     
