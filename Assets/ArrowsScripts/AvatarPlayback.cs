@@ -174,11 +174,30 @@ public class AvatarPlayback : Photon.PunBehaviour
             writer.Write(size);
             writer.Write(data);
 
-            SendPacketData(outputStream.ToArray());
+            //SendPacketData(outputStream.ToArray());
+
+            PhotonView photonView = PhotonView.Get(this);
+            //Debug.Log(photonView);
+            System.Object[] arr = { outputStream.ToArray() };
+            photonView.RPC("ReceivePacketData", PhotonTargets.All, arr);
         }
-        PhotonView photonView = PhotonView.Get(this);
-        Debug.Log(photonView);
-        photonView.RPC("PhotonOnReceive", PhotonTargets.All, PacketSequence, args.Packet.ovrNativePacket);
+    }
+
+
+    [PunRPC]
+    void ReceivePacketData(byte[] data)
+    {
+        using (MemoryStream inputStream = new MemoryStream(data))
+        {
+            BinaryReader reader = new BinaryReader(inputStream);
+            int sequence = reader.ReadInt32();
+
+            int size = reader.ReadInt32();
+            byte[] sdkData = reader.ReadBytes(size);
+
+            IntPtr packet = CAPI.ovrAvatarPacket_Read((UInt32)data.Length, sdkData);
+            LoopbackAvatar.GetComponent<OvrAvatarRemoteDriver>().QueuePacket(sequence, new OvrAvatarPacket { ovrNativePacket = packet });
+        }
     }
 
     [PunRPC]
@@ -226,18 +245,4 @@ public class AvatarPlayback : Photon.PunBehaviour
         packetQueue.AddLast(PacketPair);
     }
 
-    void ReceivePacketData(byte[] data)
-    {
-        using (MemoryStream inputStream = new MemoryStream(data))
-        {
-            BinaryReader reader = new BinaryReader(inputStream);
-            int sequence = reader.ReadInt32();
-
-            int size = reader.ReadInt32();
-            byte[] sdkData = reader.ReadBytes(size);
-
-            IntPtr packet = CAPI.ovrAvatarPacket_Read((UInt32)data.Length, sdkData);
-            LoopbackAvatar.GetComponent<OvrAvatarRemoteDriver>().QueuePacket(sequence, new OvrAvatarPacket { ovrNativePacket = packet });
-        }
-    }
 }
