@@ -128,8 +128,7 @@ public class AvatarPlayback : Photon.PunBehaviour
     //    PhotonNetwork.JoinRandomRoom();
     //}
 
-    public override void OnPhotonRandomJoinFailed(object[] codeAndMsg)
-    
+    public override void OnPhotonRandomJoinFailed(object[] codeAndMsg)   
     {
         Debug.Log("onphotonjoinroomfailed");
         PhotonNetwork.CreateRoom("Please Work", new RoomOptions() { MaxPlayers = MaxPlayersPerRoom }, null);
@@ -139,11 +138,18 @@ public class AvatarPlayback : Photon.PunBehaviour
 
 
     public override void OnJoinedRoom()
-
     {
         Debug.Log("success");
         Debug.Log(PhotonNetwork.room.PlayerCount);
-      
+
+        System.Random rnd = new System.Random();
+        PhotonNetwork.playerName = "Fool #" + rnd.Next();
+
+        LocalAvatar.RecordPackets = true;
+        LocalAvatar.PacketRecorded += OnLocalAvatarPacketRecorded;
+        float FirstValue = UnityEngine.Random.Range(LatencySettings.FakeLatencyMin, LatencySettings.FakeLatencyMax);
+        LatencySettings.LatencyValues.AddFirst(FirstValue);
+        LatencySettings.LatencySum += FirstValue;
     }
 
    /* public override void OnJoinedLobby()
