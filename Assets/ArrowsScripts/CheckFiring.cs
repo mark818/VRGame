@@ -12,6 +12,7 @@ public class CheckFiring : MonoBehaviour {
     private float [] oldIndexTriggerState = { 0, 0 };
 
     
+    
 
     // Use this for initialization
     void Start () {
@@ -27,6 +28,7 @@ public class CheckFiring : MonoBehaviour {
 
         checkFiring();
 
+        
 
 
     }
@@ -46,12 +48,12 @@ public class CheckFiring : MonoBehaviour {
     {
         if (indexTriggerState[0] > 0.9f && oldIndexTriggerState[0] < 0.9f)
         {
-            //Insert Firing Here
+            GetComponent<Firing>().Fire(controllerLeft);
         }
 
         if (indexTriggerState[1] > 0.9f && oldIndexTriggerState[1] < 0.9f)
         {
-            //Insert Firing Here
+            GetComponent<Firing>().Fire(controllerRight);
         }
 
 
