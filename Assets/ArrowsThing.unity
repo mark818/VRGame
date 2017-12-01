@@ -347,6 +347,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af8d7236cfb429d44968bbd1eb0a2ba6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PersonalCamera: {fileID: 0}
+  TestPlayerID: 0
   LocalAvatar: {fileID: 82429927}
   LoopbackAvatar: {fileID: 1301368221}
   LatencySettings:
@@ -686,11 +688,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 496618, guid: 90bf33f968e6bb44ea0208fc82c90a44, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -1.76
+      value: -2
       objectReference: {fileID: 0}
     - target: {fileID: 496618, guid: 90bf33f968e6bb44ea0208fc82c90a44, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 1.84
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 496618, guid: 90bf33f968e6bb44ea0208fc82c90a44, type: 2}
       propertyPath: m_LocalPosition.z
@@ -742,11 +744,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 463470, guid: 84c8b8609f9bb434eaf5248f17ff1293, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -5.69
+      value: -5
       objectReference: {fileID: 0}
     - target: {fileID: 463470, guid: 84c8b8609f9bb434eaf5248f17ff1293, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 2.111
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 463470, guid: 84c8b8609f9bb434eaf5248f17ff1293, type: 2}
       propertyPath: m_LocalPosition.z

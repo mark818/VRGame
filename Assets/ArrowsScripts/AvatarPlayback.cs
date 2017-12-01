@@ -14,6 +14,8 @@ public class AvatarPlayback : Photon.PunBehaviour
         public float FakeLatency;
     };
 
+    public GameObject PersonalCamera;
+    public int TestPlayerID;
     public OvrAvatar LocalAvatar;
     public OvrAvatarRemoteDriver LoopbackAvatar;
 
@@ -139,6 +141,22 @@ public class AvatarPlayback : Photon.PunBehaviour
 
     public override void OnJoinedRoom()
     {
+        TestPlayerID = PhotonNetwork.room.PlayerCount;
+
+        if (TestPlayerID == 1)
+        {
+            PersonalCamera.transform.position = new Vector3(-5, 2, 0);
+            LocalAvatar.transform.position = new Vector3(-5, 2, 0);
+            LoopbackAvatar.transform.position = new Vector3(-2, 2, 0);
+        }
+
+        if (TestPlayerID == 2)
+        {
+            PersonalCamera.transform.position = new Vector3(-2, 2, 0);
+            LocalAvatar.transform.position = new Vector3(-2, 2, 0);
+            LoopbackAvatar.transform.position = new Vector3(-5, 2, 0);
+        }
+
         Debug.Log("success");
         Debug.Log(PhotonNetwork.room.PlayerCount);
 
