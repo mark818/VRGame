@@ -15,7 +15,7 @@ public class AvatarPlayback : Photon.PunBehaviour
     };
 
     public OvrAvatar LocalAvatar;
-    public OvrAvatar LoopbackAvatar;
+    public OvrAvatarRemoteDriver LoopbackAvatar;
 
     [System.Serializable]
     public class SimulatedLatencySettings
@@ -200,11 +200,6 @@ public class AvatarPlayback : Photon.PunBehaviour
         }
     }
 
-    [PunRPC]
-    void PhotonOnReceive(int sequence, IntPtr packet)
-    {
-        LoopbackAvatar.GetComponent<OvrAvatarRemoteDriver>().QueuePacket(sequence, new OvrAvatarPacket { ovrNativePacket = packet });
-    }
 
     void Update()
     {
