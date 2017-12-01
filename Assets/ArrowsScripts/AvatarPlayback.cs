@@ -141,22 +141,25 @@ public class AvatarPlayback : Photon.PunBehaviour
 
     public override void OnJoinedRoom()
     {
-        TestPlayerID = PhotonNetwork.room.PlayerCount;
+       Debug.Log("made it hereere!");
+        
+       TestPlayerID = PhotonNetwork.room.PlayerCount;
 
         if (TestPlayerID == 1)
         {
-            PersonalCamera.transform.position = new Vector3(-5, 2, 0);
-            LocalAvatar.transform.position = new Vector3(-5, 2, 0);
-            LoopbackAvatar.transform.position = new Vector3(-2, 2, 0);
+            PersonalCamera.transform.position = new Vector3(-4, 1, 0);
+            LocalAvatar.transform.position = new Vector3(-4, 1, 0);
+            LoopbackAvatar.transform.position = new Vector3(-4, 1, 0);
         }
 
         if (TestPlayerID == 2)
         {
-            PersonalCamera.transform.position = new Vector3(-2, 2, 0);
-            LocalAvatar.transform.position = new Vector3(-2, 2, 0);
-            LoopbackAvatar.transform.position = new Vector3(-5, 2, 0);
+            PersonalCamera.transform.Rotate(0, 180, 0);
+            PersonalCamera.transform.position = new Vector3(-2, 1, 0);
+            LocalAvatar.transform.position = new Vector3(-2, 1, 0);
+            LoopbackAvatar.transform.position = new Vector3(-4, 1, 1);
         }
-
+        
         Debug.Log("success");
         Debug.Log(PhotonNetwork.room.PlayerCount);
 
