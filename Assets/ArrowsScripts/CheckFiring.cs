@@ -17,20 +17,13 @@ public class CheckFiring : MonoBehaviour {
     // Use this for initialization
     void Start () {
 		
-        
-
 	}
 	
 	// Update is called once per frame
 	void Update () {
 
         updateTriggers();
-
         checkFiring();
-
-        
-
-
     }
 
     void updateTriggers()
@@ -48,15 +41,12 @@ public class CheckFiring : MonoBehaviour {
     {
         if (indexTriggerState[0] > 0.9f && oldIndexTriggerState[0] < 0.9f)
         {
-            GetComponent<Firing>().Fire(controllerLeft);
+            GetComponent<Firing>().Fire(Firing.hands.Left);
         }
 
         if (indexTriggerState[1] > 0.9f && oldIndexTriggerState[1] < 0.9f)
         {
-            GetComponent<Firing>().Fire(controllerRight);
+            GetComponent<Firing>().Fire(Firing.hands.Right);
         }
-
-
-
     }
 }

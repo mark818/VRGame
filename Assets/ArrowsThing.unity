@@ -331,8 +331,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8fdfeb26d40ed5f4db2eda796b176347, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  controllerLeft: 1
-  controllerRight: 2
+  controllerLeft: {fileID: 1500853399}
+  controllerRight: {fileID: 952147370}
   bulletrb: {fileID: 0}
   firingSpeed: 500
   bulletType: {fileID: 1643029002440682, guid: 9ae945f74ff92df4fb672861872c0865, type: 2}
@@ -601,6 +601,10 @@ Transform:
 GameObject:
   m_PrefabParentObject: {fileID: 100004, guid: 126d619cf4daa52469682f85c1378b4a, type: 2}
   m_PrefabInternal: {fileID: 379707780}
+--- !u!1 &952147370 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 157742, guid: 84c8b8609f9bb434eaf5248f17ff1293, type: 2}
+  m_PrefabInternal: {fileID: 1594245882}
 --- !u!1 &1129428817
 GameObject:
   m_ObjectHideFlags: 0
@@ -739,6 +743,10 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 1150659299}
   m_Script: {fileID: 11500000, guid: c198a42a3843ca04fa633b60f428ff51, type: 3}
+--- !u!1 &1500853399 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 184120, guid: 84c8b8609f9bb434eaf5248f17ff1293, type: 2}
+  m_PrefabInternal: {fileID: 1594245882}
 --- !u!1001 &1594245882
 Prefab:
   m_ObjectHideFlags: 0

@@ -5,8 +5,8 @@ using UnityEngine;
 public class Firing : MonoBehaviour {
 
     public enum hands {Left, Right};
-    public OVRInput.Controller controllerLeft;
-    public OVRInput.Controller controllerRight;
+    public GameObject controllerLeft;
+    public GameObject controllerRight;
 
     public Rigidbody bulletrb;
     public float firingSpeed;
@@ -22,26 +22,24 @@ public class Firing : MonoBehaviour {
 		
 	}
 
-    public void Fire(OVRInput.Controller hand)
+    public void Fire(hands hand)
     {
         Vector3 location;
         Quaternion rotation;
 
-        if (hand == controllerLeft)
+        if (hand == hands.Left)
         {
-            print("I made it here!");
-            location = OVRInput.GetLocalControllerPosition(controllerLeft);
-            rotation = OVRInput.GetLocalControllerRotation(controllerLeft);
+            location = controllerLeft.transform.position;
+            rotation = controllerLeft.transform.rotation;
         }
         else
         {
-            location = OVRInput.GetLocalControllerPosition(controllerRight);
-            rotation = OVRInput.GetLocalControllerRotation(controllerRight);
+            location = controllerRight.transform.position;
+            rotation = controllerRight.transform.rotation;
         }
 
         GameObject bullet = Instantiate(bulletType) as GameObject;
-        bullet.transform.position = location;
-        bullet.transform.rotation = rotation;
+        bullet.transform.SetPositionAndRotation(location, rotation);
         bulletrb = bullet.GetComponent<Rigidbody>();
         bulletrb.AddForce(bullet.transform.forward * firingSpeed);
     }

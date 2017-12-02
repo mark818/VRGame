@@ -102,33 +102,7 @@ public class AvatarPlayback : Photon.PunBehaviour
         PhotonNetwork.JoinRandomRoom();
 
         return;
-        
-
-       /* if (!PhotonNetwork.JoinRandomRoom())
-        {
-            PhotonNetwork.CreateRoom(null, new RoomOptions() { MaxPlayers = MaxPlayersPerRoom }, null);
-            
-            Debug.Log("Join random room " + PhotonNetwork.JoinRandomRoom());
-        }
-        Debug.Log("Rooms " + PhotonNetwork.countOfRooms);
-        Debug.Log("Player " + PhotonNetwork.countOfPlayersInRooms);
-        System.Random rnd = new System.Random();
-        PhotonNetwork.playerName = "Fool #" + rnd.Next();
-
-        LocalAvatar.RecordPackets = true;
-        LocalAvatar.PacketRecorded += OnLocalAvatarPacketRecorded;
-        float FirstValue = UnityEngine.Random.Range(LatencySettings.FakeLatencyMin, LatencySettings.FakeLatencyMax);
-        LatencySettings.LatencyValues.AddFirst(FirstValue);
-        LatencySettings.LatencySum += FirstValue; */
-
     }
-
-
-    //public override void OnCreatedRoom()
-    //{
-    //    Debug.Log("oncreatedroom");
-    //    PhotonNetwork.JoinRandomRoom();
-    //}
 
     public override void OnPhotonRandomJoinFailed(object[] codeAndMsg)   
     {
@@ -136,8 +110,6 @@ public class AvatarPlayback : Photon.PunBehaviour
         PhotonNetwork.CreateRoom("Please Work", new RoomOptions() { MaxPlayers = MaxPlayersPerRoom }, null);
 
     }
-
-
 
     public override void OnJoinedRoom()
     {
@@ -157,6 +129,7 @@ public class AvatarPlayback : Photon.PunBehaviour
             PersonalCamera.transform.Rotate(0, 180, 0);
             PersonalCamera.transform.position = new Vector3(-1, 2, 0);
             LocalAvatar.transform.position = new Vector3(-1, 2, 0);
+            LocalAvatar.transform.Rotate(0, 180, 0);
             LoopbackAvatar.transform.position = new Vector3(-4, 2, 0);
         }
         
@@ -200,7 +173,7 @@ public class AvatarPlayback : Photon.PunBehaviour
             PhotonView photonView = PhotonView.Get(this);
             //Debug.Log(photonView);
             System.Object[] arr = { outputStream.ToArray() };
-            photonView.RPC("ReceivePacketData", PhotonTargets.All, arr);
+            photonView.RPC("ReceivePacketData", PhotonTargets.Others, arr);
         }
     }
 
@@ -243,22 +216,5 @@ public class AvatarPlayback : Photon.PunBehaviour
                 packetQueue.Remove(packet);
             }
         }
-
-       
-
-        // Debug.Log(PhotonNetwork.countOfRooms);
-        // int[] testerarray = new int[3] { 1, 3, 5 };
-        //Debug.Log(testerarray);
-
     }
-
-    void SendPacketData(byte[] data)
-    {
-        PacketLatencyPair PacketPair = new PacketLatencyPair();
-        PacketPair.PacketData = data;
-        PacketPair.FakeLatency = LatencySettings.NextValue();
-
-        packetQueue.AddLast(PacketPair);
-    }
-
 }
