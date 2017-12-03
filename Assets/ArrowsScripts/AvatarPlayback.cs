@@ -119,18 +119,19 @@ public class AvatarPlayback : Photon.PunBehaviour
 
         if (TestPlayerID == 1)
         {
-            PersonalCamera.transform.position = new Vector3(-4, 2, 0);
-            LocalAvatar.transform.position = new Vector3(-4, 2, 0);
-            LoopbackAvatar.transform.position = new Vector3(-1, 2, 0);
+            PersonalCamera.transform.position = new Vector3(-5, 2, 0);
+            LocalAvatar.transform.position = new Vector3(-5, 2, 0);
+            LoopbackAvatar.transform.position = new Vector3(0, 2, 0);
         }
 
         if (TestPlayerID == 2)
         {
             PersonalCamera.transform.Rotate(0, 180, 0);
-            PersonalCamera.transform.position = new Vector3(-1, 2, 0);
-            LocalAvatar.transform.position = new Vector3(-1, 2, 0);
+            PersonalCamera.transform.position = new Vector3(0, 2, 0);
+            LocalAvatar.transform.position = new Vector3(0, 2, 0);
             LocalAvatar.transform.Rotate(0, 180, 0);
-            LoopbackAvatar.transform.position = new Vector3(-4, 2, 0);
+            LoopbackAvatar.transform.position = new Vector3(-5, 2, 0);
+            LoopbackAvatar.transform.Rotate(0, 180, 0);
         }
         
         Debug.Log("success");
