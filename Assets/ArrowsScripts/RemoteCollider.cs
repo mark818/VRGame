@@ -7,6 +7,7 @@ public class RemoteCollider : MonoBehaviour {
 
     private void OnTriggerEnter(Collider other)
     {
+        Debug.Log("Hit");
         gameControl.GetComponent<Firing>().EnemyHit();
     }
 }

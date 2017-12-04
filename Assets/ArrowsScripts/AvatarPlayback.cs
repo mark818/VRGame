@@ -19,6 +19,8 @@ public class AvatarPlayback : Photon.PunBehaviour
     public OvrAvatar LocalAvatar;
     public OvrAvatarRemoteDriver LoopbackAvatar;
 
+    public GameObject enemyBody;
+
     [System.Serializable]
     public class SimulatedLatencySettings
     {
@@ -145,6 +147,17 @@ public class AvatarPlayback : Photon.PunBehaviour
         float FirstValue = UnityEngine.Random.Range(LatencySettings.FakeLatencyMin, LatencySettings.FakeLatencyMax);
         LatencySettings.LatencyValues.AddFirst(FirstValue);
         LatencySettings.LatencySum += FirstValue;
+
+
+        // hack the avatar
+        GameObject renderBody = enemyBody.transform.GetChild(0).gameObject;
+        CapsuleCollider collider = renderBody.AddComponent<CapsuleCollider>();
+        collider.isTrigger = true;
+        collider.radius = 0.11f;
+        collider.height = 0.26f;
+
+        RemoteCollider rc = renderBody.AddComponent<RemoteCollider>();
+        rc.gameControl = gameObject;
     }
 
    /* public override void OnJoinedLobby()

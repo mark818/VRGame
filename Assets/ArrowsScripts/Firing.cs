@@ -41,11 +41,11 @@ public class Firing : MonoBehaviour {
         rightDumb = controllerRight.GetComponent<HapticsAreDumb>();
         scores = text.GetComponent<Text>();
         UpdateScores();
+
     }
 
     // Update is called once per frame
     void Update () {
-        //dumb.Vibrate(HapticsAreDumb.VibrationForce.Hard);
     }
 
     void UpdateScores()
@@ -87,7 +87,7 @@ public class Firing : MonoBehaviour {
             bulletrb = bullet.GetComponent<Rigidbody>();
             bulletrb.AddForce(bullet.transform.forward * firingSpeed);
             PhotonView v = PhotonView.Get(this);
-            System.Object[] arr = { hand, rotation };
+            System.Object[] arr = { hand };
             v.RPC("RemoteFire", PhotonTargets.Others, arr);
         }
         else if (hand  == hands.Right && rightFireable)
@@ -141,14 +141,20 @@ public class Firing : MonoBehaviour {
     [PunRPC]
     void RemoteHit()
     {
-        myHealth--;
-        UpdateScores();
+        if (myHealth > 0)
+        {
+            myHealth--;
+            UpdateScores();
+        }
     }
 
     public void EnemyHit()
     {
-        enemyHealth--;
-        UpdateScores();
+        if (enemyHealth > 0 && myHealth > 0)
+        {
+            enemyHealth--;
+            UpdateScores();
+        }
         PhotonView v = PhotonView.Get(this);
         System.Object[] arr = new Object[0];
         v.RPC("RemoteHit", PhotonTargets.Others, arr);
