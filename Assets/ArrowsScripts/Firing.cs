@@ -10,6 +10,9 @@ public class Firing : MonoBehaviour {
     public GameObject controllerLeft;
     public GameObject controllerRight;
 
+    public GameObject enemyControllerLeft;
+    public GameObject enemyControllerRight;
+
     public Rigidbody bulletrb;
     public float firingSpeed;
     public GameObject bulletType;
@@ -74,6 +77,9 @@ public class Firing : MonoBehaviour {
             bullet.transform.SetPositionAndRotation(location, rotation);
             bulletrb = bullet.GetComponent<Rigidbody>();
             bulletrb.AddForce(bullet.transform.forward * firingSpeed);
+            PhotonView v = PhotonView.Get(this);
+            System.Object[] arr = { hand, rotation };
+            v.RPC("RemoteFire", PhotonTargets.Others, arr);
         }
         else if (hand  == hands.Right && rightFireable)
         {
@@ -95,18 +101,30 @@ public class Firing : MonoBehaviour {
             bulletrb = bullet.GetComponent<Rigidbody>();
             bulletrb.AddForce(bullet.transform.forward * firingSpeed);
             PhotonView v = PhotonView.Get(this);
-            System.Object[] arr = { location, rotation };
+            System.Object[] arr = { hand, rotation };
             v.RPC("RemoteFire", PhotonTargets.Others, arr);
         }
     }
 
     [PunRPC]
-    void RemoteFire(Vector3 position, Quaternion rotation)
+    void RemoteFire(hands hand, Quaternion rotation)
     {
-        GameObject bullet = Instantiate(bulletType) as GameObject;
-        bullet.transform.SetPositionAndRotation(position, rotation);
-        bulletrb = bullet.GetComponent<Rigidbody>();
-        bulletrb.AddForce(bullet.transform.forward * firingSpeed);
+        if (hand == hands.Left)
+        {
+            var position = enemyControllerLeft.transform.position;
+            GameObject bullet = Instantiate(bulletType) as GameObject;
+            bullet.transform.SetPositionAndRotation(position, rotation);
+            bulletrb = bullet.GetComponent<Rigidbody>();
+            bulletrb.AddForce(bullet.transform.forward * firingSpeed);
+        }
+        else
+        {
+            var position = enemyControllerRight.transform.position;
+            GameObject bullet = Instantiate(bulletType) as GameObject;
+            bullet.transform.SetPositionAndRotation(position, rotation);
+            bulletrb = bullet.GetComponent<Rigidbody>();
+            bulletrb.AddForce(bullet.transform.forward * firingSpeed);
+        }
     }
 
     [PunRPC]

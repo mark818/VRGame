@@ -349,6 +349,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   controllerLeft: {fileID: 1500853399}
   controllerRight: {fileID: 952147370}
+  enemyControllerLeft: {fileID: 2112220429}
+  enemyControllerRight: {fileID: 878113714}
   bulletrb: {fileID: 0}
   firingSpeed: 1000
   bulletType: {fileID: 1643029002440682, guid: 9ae945f74ff92df4fb672861872c0865, type: 2}
@@ -745,6 +747,10 @@ RectTransform:
   m_AnchoredPosition: {x: -2.45, y: 2}
   m_SizeDelta: {x: 400, y: 300}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &878113714 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 166844, guid: 90bf33f968e6bb44ea0208fc82c90a44, type: 2}
+  m_PrefabInternal: {fileID: 1150659299}
 --- !u!1 &923233797 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 100004, guid: 126d619cf4daa52469682f85c1378b4a, type: 2}
@@ -1259,3 +1265,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2112220429 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 178596, guid: 90bf33f968e6bb44ea0208fc82c90a44, type: 2}
+  m_PrefabInternal: {fileID: 1150659299}
