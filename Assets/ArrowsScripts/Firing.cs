@@ -47,7 +47,7 @@ public class Firing : MonoBehaviour {
 
     void UpdateScores()
     {
-        scores.text = "My HP : " + myHealth + "\n     Enemy HP : " + enemyHealth; 
+        scores.text = "My HP : " + myHealth + "\nEnemy HP : " + enemyHealth; 
     }
 
     public void Fire(hands hand)
@@ -94,6 +94,9 @@ public class Firing : MonoBehaviour {
             bullet.transform.SetPositionAndRotation(location, rotation);
             bulletrb = bullet.GetComponent<Rigidbody>();
             bulletrb.AddForce(bullet.transform.forward * firingSpeed);
+            PhotonView v = PhotonView.Get(this);
+            System.Object[] arr = { location, rotation };
+            v.RPC("RemoteFire", PhotonTargets.Others, arr);
         }
     }
 
@@ -110,11 +113,15 @@ public class Firing : MonoBehaviour {
     void RemoteHit()
     {
         myHealth--;
+        UpdateScores();
     }
 
     public void EnemyHit()
     {
         enemyHealth--;
         UpdateScores();
+        PhotonView v = PhotonView.Get(this);
+        System.Object[] arr = new Object[0];
+        v.RPC("RemoteHit", PhotonTargets.Others, arr);
     }
 }
