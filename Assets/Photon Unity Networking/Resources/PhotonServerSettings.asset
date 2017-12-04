@@ -44,4 +44,6 @@ MonoBehaviour:
   - TaggedPlayer
   - PhotonOnReceive
   - ReceivePacketData
+  - RemoteFire
+  - RemoteHit
   DisableAutoOpenWizard: 1
