@@ -50,7 +50,16 @@ public class Firing : MonoBehaviour {
 
     void UpdateScores()
     {
-        scores.text = "My HP : " + myHealth + "\nEnemy HP : " + enemyHealth; 
+        if (myHealth == 0)
+        {
+            scores.text = "You lose. Get rekt.";
+        }
+        else if (enemyHealth == 0)
+        {
+            scores.text = "You win. He got rekt.";
+        }
+        else
+            scores.text = "My HP : " + myHealth + "\nEnemy HP : " + enemyHealth; 
     }
 
     public void Fire(hands hand)
@@ -101,17 +110,18 @@ public class Firing : MonoBehaviour {
             bulletrb = bullet.GetComponent<Rigidbody>();
             bulletrb.AddForce(bullet.transform.forward * firingSpeed);
             PhotonView v = PhotonView.Get(this);
-            System.Object[] arr = { hand, rotation };
+            System.Object[] arr = { hand };
             v.RPC("RemoteFire", PhotonTargets.Others, arr);
         }
     }
 
     [PunRPC]
-    void RemoteFire(hands hand, Quaternion rotation)
+    void RemoteFire(hands hand)
     {
         if (hand == hands.Left)
         {
             var position = enemyControllerLeft.transform.position;
+            var rotation = enemyControllerLeft.transform.rotation;
             GameObject bullet = Instantiate(bulletType) as GameObject;
             bullet.transform.SetPositionAndRotation(position, rotation);
             bulletrb = bullet.GetComponent<Rigidbody>();
@@ -120,6 +130,7 @@ public class Firing : MonoBehaviour {
         else
         {
             var position = enemyControllerRight.transform.position;
+            var rotation = enemyControllerRight.transform.rotation;
             GameObject bullet = Instantiate(bulletType) as GameObject;
             bullet.transform.SetPositionAndRotation(position, rotation);
             bulletrb = bullet.GetComponent<Rigidbody>();

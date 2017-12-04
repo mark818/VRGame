@@ -57,7 +57,6 @@ public class HapticsAreDumb : MonoBehaviour
         var channel = OVRHaptics.RightChannel;
         if (controllerMask == OVRInput.Controller.LTouch)
             channel = OVRHaptics.LeftChannel;
-        Debug.Log(channel);
         switch (vibrationForce)
         {
             case VibrationForce.Light:
