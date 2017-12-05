@@ -150,13 +150,19 @@ public class AvatarPlayback : Photon.PunBehaviour
 
 
         // hack the avatar
-        GameObject renderBody = enemyBody.transform.GetChild(0).gameObject;
-        CapsuleCollider collider = renderBody.AddComponent<CapsuleCollider>();
+        GameObject renderBody = enemyBody.transform.GetChild(1).gameObject;
+        GameObject rootJnt = renderBody.transform.GetChild(0).gameObject;
+        GameObject bodyJnt = rootJnt.transform.GetChild(0).gameObject;
+        GameObject chestJnt = bodyJnt.transform.GetChild(0).gameObject;
+        GameObject neckBase = chestJnt.transform.GetChild(0).gameObject;
+        GameObject neckJnt = neckBase.transform.GetChild(0).gameObject;
+        GameObject headJnt = neckJnt.transform.GetChild(0).gameObject;
+        CapsuleCollider collider = headJnt.AddComponent<CapsuleCollider>();
         collider.isTrigger = true;
         collider.radius = 0.11f;
         collider.height = 0.26f;
 
-        RemoteCollider rc = renderBody.AddComponent<RemoteCollider>();
+        RemoteCollider rc = headJnt.AddComponent<RemoteCollider>();
         rc.gameControl = gameObject;
     }
 
